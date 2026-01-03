@@ -1,0 +1,11 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>Create Cycle</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn" type="submit">Create</button>
+  <a class="btn2" href="{% url 'contributions:cycle_list' %}">Back</a>
+</form>
+{% endblock %}

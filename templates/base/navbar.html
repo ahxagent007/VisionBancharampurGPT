@@ -1,0 +1,27 @@
+<nav>
+  <a href="{% url 'accounts:dashboard' %}">Dashboard</a>
+
+  {% if user.is_authenticated %}
+    {% if user.role == "ADMIN" or user.role == "STAFF" %}
+      <a href="{% url 'contributions:cycle_list' %}">Cycles</a>
+      <a href="{% url 'reports:monthly_report' %}">Reports</a>
+    {% endif %}
+
+    {% if user.role == "MEMBER" %}
+      <a href="{% url 'contributions:member_statement' %}">My Statement</a>
+    {% endif %}
+
+    <span style="float:right;">
+      {{ user.username }} ({{ user.role }}) |
+      <a href="{% url 'accounts:logout' %}">Logout</a>
+    </span>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">Login</a>
+  {% endif %}
+
+  {% if user.is_authenticated and user.role != "MEMBER" %}
+    <a href="{% url 'investments:project_list' %}">Investments</a>
+    <a href="{% url 'expenses:expense_list' %}">Expenses</a>
+  {% endif %}
+
+</nav>

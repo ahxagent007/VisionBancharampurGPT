@@ -1,0 +1,32 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>Contribution Cycles</h2>
+
+<p><a class="btn" href="{% url 'contributions:cycle_create' %}">Create New Cycle</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cycle</th>
+      <th>Due Date</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in cycles %}
+      <tr>
+        <td>{{ c }}</td>
+        <td>{{ c.due_date }}</td>
+        <td>{% if c.is_closed %}<span class="badge">Closed</span>{% else %}<span class="badge">Open</span>{% endif %}</td>
+        <td>
+          <a class="btn2" href="{% url 'contributions:member_contributions' c.id %}">View Members</a>
+          <a class="btn" href="{% url 'contributions:cycle_generate' c.id %}">Generate Rows</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4">No cycles found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

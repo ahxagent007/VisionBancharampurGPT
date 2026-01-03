@@ -1,0 +1,8 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>Staff Dashboard</h2>
+<p>
+  <a class="btn" href="{% url 'contributions:cycle_list' %}">Cycles & Payments</a>
+  <a class="btn2" href="{% url 'reports:monthly_report' %}">Monthly Report</a>
+</p>
+{% endblock %}

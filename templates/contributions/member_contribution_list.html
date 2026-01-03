@@ -1,0 +1,38 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>Members in Cycle: {{ cycle }}</h2>
+
+<p>
+  <a class="btn2" href="{% url 'contributions:cycle_list' %}">Back</a>
+  <a class="btn" href="{% url 'contributions:cycle_generate' cycle.id %}">Generate Rows</a>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Member ID</th>
+      <th>Name</th>
+      <th>Expected</th>
+      <th>Paid</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r.member.member_id }}</td>
+        <td>{{ r.member.user.get_full_name|default:r.member.user.username }}</td>
+        <td>{{ r.expected_amount }}</td>
+        <td>{{ r.paid_amount }}</td>
+        <td><span class="badge">{{ r.status }}</span></td>
+        <td>
+          <a class="btn" href="{% url 'contributions:payment_create' r.id %}">Add Payment</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="6">No member rows. Click “Generate Rows”.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

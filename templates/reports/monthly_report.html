@@ -1,0 +1,19 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>Monthly Report</h2>
+
+<form method="get">
+  <label>Year</label>
+  <input name="year" value="{{ year }}" style="width:120px;">
+  <label>Month</label>
+  <input name="month" value="{{ month }}" style="width:80px;">
+  <button class="btn" type="submit">View</button>
+</form>
+
+<h3>Summary for {{ year }}-{{ month }}</h3>
+<ul>
+  <li>Inflow: <b>{{ summary.inflow }}</b></li>
+  <li>Outflow: <b>{{ summary.outflow }}</b></li>
+  <li>Net: <b>{{ summary.net }}</b></li>
+</ul>
+{% endblock %}

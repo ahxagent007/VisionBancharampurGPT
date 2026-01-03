@@ -1,0 +1,18 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>Add Payment</h2>
+
+<p>
+  Member: <b>{{ contribution.member.member_id }}</b> |
+  Cycle: <b>{{ contribution.cycle }}</b> |
+  Expected: <b>{{ contribution.expected_amount }}</b> |
+  Paid: <b>{{ contribution.paid_amount }}</b>
+</p>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn" type="submit">Save Payment</button>
+  <a class="btn2" href="{% url 'contributions:member_contributions' contribution.cycle_id %}">Back</a>
+</form>
+{% endblock %}

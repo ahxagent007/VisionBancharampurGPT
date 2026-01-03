@@ -1,0 +1,55 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>My Statement</h2>
+<p>Member: <b>{{ member.member_id }}</b></p>
+
+<h3>Contribution Status</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Cycle</th>
+      <th>Expected</th>
+      <th>Paid</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in contributions %}
+      <tr>
+        <td>{{ c.cycle }}</td>
+        <td>{{ c.expected_amount }}</td>
+        <td>{{ c.paid_amount }}</td>
+        <td><span class="badge">{{ c.status }}</span></td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4">No contributions found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h3>Ledger Entries</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Direction</th>
+      <th>Amount</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for e in ledger_entries %}
+      <tr>
+        <td>{{ e.date }}</td>
+        <td>{{ e.entry_type }}</td>
+        <td>{{ e.direction }}</td>
+        <td>{{ e.amount }}</td>
+        <td>{{ e.description }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">No ledger entries found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

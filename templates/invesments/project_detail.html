@@ -1,0 +1,36 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>{{ project.name }}</h2>
+<p>
+  Type: <b>{{ project.project_type }}</b> |
+  Status: <b>{{ project.status }}</b> |
+  Start: <b>{{ project.start_date|default:"-" }}</b>
+</p>
+<p>{{ project.description }}</p>
+
+<p><a class="btn" href="{% url 'investments:asset_create' %}">Add Asset</a></p>
+
+<h3>Assets</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Purchase Date</th>
+      <th>Cost</th>
+      <th>Current Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in assets %}
+      <tr>
+        <td>{{ a.title }}</td>
+        <td>{{ a.purchase_date }}</td>
+        <td>{{ a.purchase_cost }}</td>
+        <td>{{ a.current_value|default:"-" }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4">No assets yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

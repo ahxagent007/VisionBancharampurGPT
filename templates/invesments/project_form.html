@@ -1,0 +1,10 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>Create Project</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn" type="submit">Save</button>
+  <a class="btn2" href="{% url 'investments:project_list' %}">Back</a>
+</form>
+{% endblock %}

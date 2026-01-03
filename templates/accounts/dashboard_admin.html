@@ -1,0 +1,11 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<p>Quick links:</p>
+<p>
+  <a class="btn" href="{% url 'contributions:cycle_list' %}">Manage Cycles</a>
+  <a class="btn2" href="{% url 'reports:monthly_report' %}">Monthly Report</a>
+</p>
+<p>Tip: Create members and set monthly fee in Django Admin.</p>
+<p><a class="btn2" href="/admin/">Open Django Admin</a></p>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>Approve Expense</h2>
+
+<p>
+  <b>{{ expense.category }}</b><br>
+  Amount: <b>{{ expense.amount }}</b><br>
+  Date: <b>{{ expense.expense_date }}</b><br>
+  Notes: {{ expense.notes|default:"-" }}
+</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button class="btn" name="action" value="approve" type="submit">Approve</button>
+  <button class="btn2" name="action" value="reject" type="submit">Reject</button>
+  <a class="btn2" href="{% url 'expenses:expense_list' %}">Back</a>
+</form>
+{% endblock %}

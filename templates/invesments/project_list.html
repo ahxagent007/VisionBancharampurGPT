@@ -1,0 +1,34 @@
+{% extends "base/base.html" %}
+{% block content %}
+<h2>Investment Projects</h2>
+
+<p>
+  <a class="btn" href="{% url 'investments:project_create' %}">Create Project</a>
+  <a class="btn2" href="{% url 'investments:asset_create' %}">Add Asset</a>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Start</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in projects %}
+      <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.project_type }}</td>
+        <td><span class="badge">{{ p.status }}</span></td>
+        <td>{{ p.start_date|default:"-" }}</td>
+        <td><a class="btn2" href="{% url 'investments:project_detail' p.id %}">View</a></td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">No projects yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
